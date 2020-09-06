@@ -1,0 +1,121 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+body{
+    background:#eee;
+    font-family:cursive;
+    height:100%;
+}
+
+.container{
+    background:rgb(122, 124, 124);
+    display:block;
+    margin:auto;
+    margin-top:2rem;
+    padding-top:1rem;
+    width:20rem;
+    height:35rem;
+    border-radius:1rem;
+    
+}
+
+.screen{
+    display: block;
+    background: #eee;
+    border: 1px solid #ddd;
+    box-shadow: 0px 0px 4px 1px #ccc;
+    width: 12rem;
+    margin: auto;
+    border-radius: 1rem;
+    height: 5rem;
+    text-align: right;
+    padding: 42px;
+    font-size: 22px;
+    
+}
+
+.userInput{
+    height:2rem;
+    width:12rem;
+    padding: 0 1rem;
+    /* background-color: teal; */
+    margin-bottom:2.5rem;
+}
+
+.result{
+    height: 2rem;
+    width: 12rem;
+    padding: 0 1rem;
+    /* background-color: rgb(255, 225, 231);  */
+}
+
+hr{
+    width:80%;
+    float:right;
+}
+.keypad{
+    padding: 10px;
+    margin: auto;
+    margin-top: inherit;
+    background: #ddd;
+    width: 16rem;
+    border-radius: 1rem;
+    height: 20rem;
+}
+.row{
+    /* border:1px solid black; */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    /* margin: 20px auto; */
+    align-content: center;
+    padding: 8px;
+}
+
+.key{
+    width: 17px;
+    margin: auto;
+    padding: 15px;
+    height: 17px;
+    border-radius: 50%;
+    background: white;
+    text-align: center;
+    align-self: center;
+    box-shadow: 0px 2px 2px 0px rgb(122, 124, 124);
+    font-size: 14px;
+    font-weight: 600;
+    overflow:hidden;
+}
+
+.key:hover{
+    background:purple;
+    color:white;
+    /* width: 2rem; */
+}
+.switch{
+    background:rgb(255, 177, 32);
+    padding-top: 15px;
+    width:2rem;
+    height:1rem;
+    font-size:12px;
+}
+.ops{
+    background:rgb(2, 235, 235);
+}
+.equal{
+    background: salmon;
+}
+
+div[disabled]{
+    background-color: rgb(221, 220, 220);
+    color:rgb(199, 199, 199);
+}
+
+div[disabled]:hover{
+    background-color: rgb(221, 220, 220);
+    color:rgb(199, 199, 199); 
+}
