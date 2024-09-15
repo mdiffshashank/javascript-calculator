@@ -3,32 +3,40 @@
     padding:0;
 }
 
+:root{
+    --radius:0.5rem;
+    --primary:#000;
+    --secondry: yellowgreen;
+}
+
 body{
+    background:yellowgreen;
     background:#eee;
-    font-family:cursive;
+    font-family:'Courier New', Courier, monospace;
+    font-size:20px;
     height:100%;
 }
 
 .container{
-    background:rgb(122, 124, 124);
+    background:#191818;
     display:block;
     margin:auto;
     margin-top:2rem;
     padding-top:1rem;
     width:20rem;
     height:35rem;
-    border-radius:1rem;
+    border-radius:var(--radius);
     
 }
 
 .screen{
     display: block;
-    background: #eee;
+    background: #fff;
     border: 1px solid #ddd;
-    box-shadow: 0px 0px 4px 1px #ccc;
+    /* box-shadow: 0px 0px 4px 1px #ccc; */
     width: 12rem;
     margin: auto;
-    border-radius: 1rem;
+    border-radius:var(--radius);
     height: 5rem;
     text-align: right;
     padding: 42px;
@@ -59,9 +67,9 @@ hr{
     padding: 10px;
     margin: auto;
     margin-top: inherit;
-    background: #ddd;
+    background: var(--primary);
     width: 16rem;
-    border-radius: 1rem;
+    border-radius:var(--radius);
     height: 20rem;
 }
 .row{
@@ -81,19 +89,19 @@ hr{
     margin: auto;
     padding: 15px;
     height: 17px;
-    border-radius: 50%;
+    border-radius: 5px;
     background: white;
     text-align: center;
     align-self: center;
-    box-shadow: 0px 2px 2px 0px rgb(122, 124, 124);
+    box-shadow: 0px 2px 2px 0px rgb(136, 136, 136);
     font-size: 14px;
     font-weight: 600;
     overflow:hidden;
+    cursor: pointer;
 }
 
 .key:hover{
-    background:purple;
-    color:white;
+    background:#ccc;
     /* width: 2rem; */
 }
 .switch{

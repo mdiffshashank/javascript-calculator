@@ -1,76 +1,105 @@
-var result = null;
-var operation = null;
-var isSwitchOn = true;
+(function () {
+  let result = null;
+  let operation = null;
+  let isSwitchOn = true;
 
-// //addition
-// const addition = (a, b) => {
-//   document.querySelector(".screen").textContent = a + b;
-// };
+  document.querySelectorAll(".key").forEach((key) => {
+    key.addEventListener("click", (event) => {
+      const el_Type = (function () {
+        switch (true) {
+          case event.target.classList.contains("number"):
+            return "number";
+          case event.target.classList.contains("ops"):
+            return "ops";
+          case event.target.classList.contains("equal"):
+            return "equal";
+          case event.target.classList.contains("clear"):
+            return "clear";
+          case event.target.classList.contains("switch"):
+            return "switch";
+          case event.target.classList.contains("mod"):
+            return "mod";
+          case event.target.classList.contains("del"):
+            return "del";
+          default:
+            throw "Please press a valid key";
+        }
+      })(event);
 
-// //substract
-// const substract = (a, b) => {
-//   document.querySelector(".screen").textContent = a - b;
-// };
+      const value = event.target.textContent;
+      getSwitch(el_Type, value);
+      //event.target.textContent -> value
+      //console.dir(event);
+    });
+  });
 
-// //multiply
-// const multiply = (a, b) => {
-//   document.querySelector(".screen").textContent = a * b;
-// };
+  //start from this listener
+  document.addEventListener("keydown", (e) => {
+    const key = e.key;
+    getSwitch(getElementType(key), key);
+  });
 
-// //devide
-// const devide = (a, b) => {
-//   document.querySelector(".screen").textContent = a / b;
-// };
+  function getElementType(key) {
+    switch (true) {
+      case key > 0 && key < 9:
+        return "number";
+      case key == "+" || key == "-" || key == "*" || key == "/":
+        return "ops";
+      case key.toLowerCase() == "enter":
+        return "equal";
+      default:
+        throw "Please enter correct key";
+    }
+  }
 
-//clearScreen
-const clearScreen = () => {
-  //console.log(document.querySelector(".userInput").textContent);
-  document.querySelector(".userInput").textContent = "";
-  document.querySelector(".result").textContent = "";
-  result = null;
-  operation = null;
-};
+  function getSwitch(el_Type, value) {
+    if (isSwitchOn) {
+      switch (el_Type) {
+        case "number":
+          document.querySelector(".userInput").textContent += value; //string concatination
 
-//keypress
-const keyPress = (value) => {
-  document.querySelector(".screen").textContent = value;
-};
+          result == null
+            ? (result = value)
+            : operation == null
+            ? (result += value)
+            : (result = document.querySelector(".userInput").textContent);
+          break;
 
-getSwitch = (el_Type,value) => {
-  switch (el_Type) {
-    case "number":
-      if (isSwitchOn) {
-        document.querySelector(".userInput").textContent += value;
+        case "ops":
+          document.querySelector(".userInput").textContent += value;
+          operation = value;
+          break;
 
-        result == null
-          ? (result = value)
-          : operation == null
-          ? (result += value)
-          : (result = document.querySelector(".userInput").textContent);
-        console.log(result);
+        case "equal":
+          //clear content
+          document.querySelector(".result").textContent =
+            eval(result).toFixed(2) || "";
+          break;
+
+        case "switch":
+          isSwitchOn = !isSwitchOn;
+          if (isSwitchOn) {
+            document.querySelector(".switch").style.backgroundColor = "orange";
+          } else {
+            clearScreen();
+            document.querySelector(".switch").style.backgroundColor = "teal";
+          }
+          break;
+
+        case "clear":
+          clearScreen();
+          break;
+
+        case "mod":
+          break;
+
+        case "del":
+          break;
+
+        default:
+          null;
       }
-
-      break;
-    case "ops":
-      if (isSwitchOn) {
-        document.querySelector(".userInput").textContent += value;
-        operation = value;
-      }
-      break;
-    case "equal":
-      //clear content
-      if (isSwitchOn) {
-        document.querySelector(".result").textContent =
-          eval(result).toFixed(2) || "";
-         
-      }
-      break;
-    case "clear":
-      if (isSwitchOn) {
-        clearScreen();
-      }
-      break;
-    case "switch":
+    } else if (!isSwitchOn && el_Type === "switch") {
       isSwitchOn = !isSwitchOn;
       if (isSwitchOn) {
         document.querySelector(".switch").style.backgroundColor = "orange";
@@ -78,44 +107,15 @@ getSwitch = (el_Type,value) => {
         clearScreen();
         document.querySelector(".switch").style.backgroundColor = "teal";
       }
-      break;
-    case "mod":
-      break;
-    case "del":
-      break;
-    default:
-      null;
+    }
   }
-};
 
-document.querySelectorAll(".key").forEach((key, i, a) => {
-  key.addEventListener("click", (event) => {
-    const el_Type = event.target.classList.contains("number")
-      ? "number"
-      : event.target.classList.contains("ops")
-      ? "ops"
-      : event.target.classList.contains("equal")
-      ? "equal"
-      : event.target.classList.contains("clear")
-      ? "clear"
-      : event.target.classList.contains("switch")
-      ? "switch"
-      : event.target.classList.contains("mod")
-      ? "mod"
-      : event.target.classList.contains("del")
-      ? "del"
-      : null;
-
-    const value = event.target.textContent;
-    getSwitch(el_Type,value);
-    //event.target.textContent -> value
-    //console.dir(event);
-  });
-});
-
-document.addEventListener("keydown", (e) => {
-  console.log(e);
-  const key = e.key;
-  const el_Type =  key >0 && key < 9 ? "number" : (key == '+' || key == '-' || key == '*' || key == '/') ? 'ops' : key.toLowerCase() == 'enter' ? 'equal':'';
-  getSwitch(el_Type,key);
-});
+  //clearScreen
+  function clearScreen() {
+    //console.log(document.querySelector(".userInput").textContent);
+    document.querySelector(".userInput").textContent = "";
+    document.querySelector(".result").textContent = "";
+    result = null;
+    operation = null;
+  }
+})();
